@@ -53,7 +53,10 @@ Locations:
 | 2. Ingestion Commands |
 ------------------------
 A. HOW TO BUILD
-Commands that puts files in HDFS. -mkdir and -put.
+Commands that puts files in HDFS. 
+```
+-mkdir and -put.
+```
 
 B. HOW TO RUN
 ```
@@ -141,7 +144,8 @@ project/output/profile/original/user_location
 --------------------
 | 5. Analytic codes |
 --------------------
-A. HOW TO BUILD
+A. HOW TO BUILD`
+``
 Analytics are done using Hive, so there is no code, just commands and queries. 4 Parts.
 1.create and describe tables
 	creates and describes 2 tables based on the 2 cleaned inputs.
@@ -151,6 +155,7 @@ Analytics are done using Hive, so there is no code, just commands and queries. 4
 	counts (1) sentences with "anymore", (2) sentences with positive anymore, and (3) count of positive anymore grouped by location
 4. other analytics I need
 	shows the location and tweet content for tweets with positive anymore for linguistic analysis.
+```
 
 B. HOW TO RUN
 See queries in /ana_code. Just run them in Hive.
