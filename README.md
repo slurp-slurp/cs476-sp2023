@@ -179,6 +179,7 @@ All files are located in /project, to which I have given access. I show the stru
 					(file part-r-00000)
 
 Also, structure of project directories.
+```
 
 /project_XU
 	readMe.txt
@@ -198,4 +199,4 @@ Also, structure of project directories.
 	/screenshots
 		(screenshots png files for all steps)
 
-
+```
