@@ -21,7 +21,7 @@ The training dataset in it, which I use, contains 115,886 Twitter users and 3,84
 The dataset is split into 2 files.
 (1) original_tTweets.txt 
 (2) original_user_location.txt
-
+```
 Schema:
 original_tTweets
 --------------------------
@@ -36,15 +36,18 @@ original_user_location
 userID String (foreign key ref original_tTweets.userID)
 location String
 --------------------------
+```
 
 The two original files are cleaned. The 2 cleaned files are used for further analysis. 
 Locations:
+```
 2 original files
 	project/input/original/tweets/original_tTweets.txt
 	project/input/original/user_location/original_user_location.txt
 2 cleaned files
 	project/input/cleaned/tweets/clean_tweets.txt
 	project/input/cleaned/user_loc/clean_user_location.txt
+```
 
 -----------------------
 | 2. Ingestion Commands |
@@ -56,9 +59,11 @@ B. HOW TO RUN
 Run directly in HDFS. 
 
 C. WHERE TO FIND RESULTS
+```
 HDFS
 project/input/original/tweets/original_tTweets.txt
 project/input/original/user_location/original_user_location.txt
+```
 
 --------------------
 | 3. Cleaning codes |
@@ -81,24 +86,30 @@ Two sets of MR cleaning codes are written to clean the two original datasets. Co
 
 B. HOW TO RUN
 (1)
+```
 javac -classpath `yarn classpath` -d . CleanTMapper.java
 javac -classpath `yarn classpath` -d . CleanTReducer.java
 javac -classpath `yarn classpath`:. -d . CleanT.java
 jar -cvf cleanT.jar *.class
 hadoop jar cleanT.jar CleanT project/input/original/tweets/original_tTweets.txt project/output/cleaned/tweets
+```
 
 
 (2)
+```
 javac -classpath `yarn classpath` -d . CleanUMapper.java
 javac -classpath `yarn classpath` -d . CleanUReducer.java
 javac -classpath `yarn classpath`:. -d . CleanU.java
 jar -cvf cleanU.jar *.class
 hadoop jar cleanU.jar CleanU project/input/original/user_location/original_user_location.txt project/output/cleaned/user_loc
+```
  
 C. WHERE TO FIND RESULTS (need to concat all the files in each)
+```
 (1) project/output/cleaned/tweets
 (2) project/output/cleaned/user_loc
 sample concat: hdfs dfs -cat project/output/cleaned/tweets/*
+```
 
 --------------------
 | 4. Profiling codes |
@@ -107,18 +118,22 @@ A. HOW TO BUILD
 One set of MR profiling codes are written to profile the 4 input files. It counts the number of records in each file. 
 
 B. HOW TO RUN
+```
 javac -classpath `yarn classpath` -d . CountRecsMapper.java
 javac -classpath `yarn classpath` -d . CountRecsReducer.java
 javac -classpath `yarn classpath`:. -d . CountRecs.java
 jar -cvf countRecs.jar *.class
 hadoop jar countRecs.jar CountRecs <input path> <output path>
+```
 
 C. WHERE TO FIND RESULTS
+```
 project/output/profile/cleaned/tweets
 project/output/profile/cleaned/user_location
 project/output/profile/original/tweets
 project/output/profile/original/user_location
 - you can also see the results in /screenshot.
+```
 
 
 --------------------
@@ -146,6 +161,7 @@ Given in time by Hive. Also in /screenshots.
 -------------------------
 | 6. Directory structure |
 -------------------------
+```
 All files are located in /project, to which I have given access. I show the structure here.
 
 /project
@@ -177,7 +193,7 @@ All files are located in /project, to which I have given access. I show the stru
 					(file part-r-00000)
 				project/output/profile/original/user_location
 					(file part-r-00000)
-
+```
 Also, structure of project directories.
 ```
 
