@@ -1,0 +1,11 @@
+Source data downloaded directly from the web; no code used.
+https://archive.org/details/twitter_cikm_2010
+
+Commands:
+hdfs dfs -mkdir project
+hdfs dfs -mkdir project/input
+hdfs dfs -mkdir project/input/original
+hdfs dfs -mkdir project/input/original/tweets
+hdfs dfs -mkdir project/input/original/user_location
+hdfs dfs -put data/original_tTweets.txt project/input/original/tweets
+hdfs dfs -put data/original_user_location.txt project/input/original/user_location
