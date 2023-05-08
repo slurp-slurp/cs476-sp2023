@@ -53,7 +53,7 @@ Locations:
 | 2. Ingestion Commands |
 ------------------------
 A. HOW TO BUILD
-Commands that puts files in HDFS. 
+- Commands that puts files in HDFS. 
 ```
 -mkdir and -put.
 ```
@@ -73,8 +73,8 @@ project/input/original/user_location/original_user_location.txt
 --------------------
 | 3. Cleaning codes |
 --------------------
-A. HOW TO BUILD
-Two sets of MR cleaning codes are written to clean the two original datasets. Codes are located in /etl_code in the homework.
+- A. HOW TO BUILD
+- Two sets of MR cleaning codes are written to clean the two original datasets. Codes are located in /etl_code in the homework.
 
 (1) The cleaning code in "/etl_code/Nathalia Xu/clean tweets" is for original_tTweets.txt.
     It fulfills the cleaning requirements in both hw7 and hw8. It does the following.
@@ -120,7 +120,7 @@ sample concat: hdfs dfs -cat project/output/cleaned/tweets/*
 | 4. Profiling codes |
 --------------------
 A. HOW TO BUILD
-One set of MR profiling codes are written to profile the 4 input files. It counts the number of records in each file. 
+- One set of MR profiling codes are written to profile the 4 input files. It counts the number of records in each file. 
 
 B. HOW TO RUN
 ```
