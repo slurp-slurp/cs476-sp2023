@@ -168,9 +168,9 @@ Given in time by Hive. Also in /screenshots.
 -------------------------
 | 6. Directory structure |
 -------------------------
-```
-All files are located in /project, to which I have given access. I show the structure here.
 
+All files are located in /project, to which I have given access. I show the structure here.
+```
 /project
  	project/input
    		project/input/cleaned
