@@ -151,9 +151,9 @@ Analytics are done using Hive, so there is no code, just commands and queries. 4
 	creates and describes 2 tables based on the 2 cleaned inputs.
 - 2.find distinct	
 	finds (1) distinct locations and (2) distinct user + tweet combinations from the joined table of the 2.
-- 3. count text data
+- 3.count text data
 	counts (1) sentences with "anymore", (2) sentences with positive anymore, and (3) count of positive anymore grouped by location
-- 4. other analytics I need
+- 4.other analytics I need
 	shows the location and tweet content for tweets with positive anymore for linguistic analysis.
 
 
