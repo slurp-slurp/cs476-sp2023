@@ -56,7 +56,9 @@ A. HOW TO BUILD
 Commands that puts files in HDFS. -mkdir and -put.
 
 B. HOW TO RUN
+```
 Run directly in HDFS. 
+```
 
 C. WHERE TO FIND RESULTS
 ```
