@@ -1,0 +1,39 @@
+NOTE: All analytics done by Hive; no source code, class files, jar, etc.
+
+1.create and describe tables
+DROP TABLE IF EXISTS tweets;
+CREATE EXTERNAL TABLE tweets(user_id STRING, tweet_id STRING, tweet STRING, has_anymore BOOLEAN) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE location  'hdfs://nyu-dataproc-m/user/mx626_nyu_edu/project/input/cleaned/tweets' tblproperties ("skip.header.line.count"="0");
+
+describe tweets;
+select * from tweets limit 5;
+
+DROP TABLE IF EXISTS user_location;
+CREATE EXTERNAL TABLE user_location(user_id STRING, location STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE location  'hdfs://nyu-dataproc-m/user/mx626_nyu_edu/project/input/cleaned/user_loc' tblproperties ("skip.header.line.count"="0");
+
+describe user_location;
+select * from user_location limit 5;
+
+2.find distinct
+select count(distinct location) from user_location;
+select distinct location from user_location limit 10;
+
+select count(*) from 
+(select distinct t.user_id as user_id, t.tweet as tweet, t.has_anymore as has_anymore, u.location as location from tweets t join user_location u on t.user_id = u.user_id) as joined_tb;
+
+select distinct t.user_id as user_id, t.tweet as tweet, t.has_anymore as has_anymore, u.location as location from tweets t join user_location u on t.user_id = u.user_id limit 10;
+
+3. count text data
+select count(*) from (select distinct t.user_id as user_id, t.tweet as tweet, t.has_anymore as has_anymore, u.location as location from tweets t join user_location u on t.user_id = u.user_id) as joined_tb 
+where has_anymore = true;
+
+select count(*) from (select distinct t.user_id as user_id, t.tweet as tweet, t.has_anymore as has_anymore, u.location as location from tweets t join user_location u on t.user_id = u.user_id) as joined_tb 
+where has_anymore = true and tweet REGEXP "^(?!.*(few|little|n¡¯t|idc|idk|barely|rarely|hardly|does|do|what|why|how|when|where|who|nt|no|not|n't|never))(?=.*anymore).*$" and not (tweet like "%anymore?%");
+
+select location, count(*) from (select distinct t.user_id as user_id, t.tweet as tweet, t.has_anymore as has_anymore, u.location as location from tweets t join user_location u on t.user_id = u.user_id) as joined_tb
+where has_anymore = true and tweet REGEXP "^(?!.*(few|little|n¡¯t|idc|idk|barely|rarely|hardly|does|do|what|why|how|when|where|who|nt|no|not|n't|never))(?=.*anymore).*$" and not (tweet like "%anymore?%")
+group by location;
+
+4. other analytics I need
+select location, tweet from (select distinct t.user_id as user_id, t.tweet as tweet, t.has_anymore as has_anymore, u.location as location from tweets t join user_location u on t.user_id = u.user_id) as joined_tb 
+where has_anymore = true and tweet REGEXP "^(?!.*(few|little|n¡¯t|idc|idk|barely|rarely|hardly|does|do|what|why|how|when|where|who|nt|no|not|n't|never))(?=.*anymore).*$" and not (tweet like "%anymore?%")  
+order by location;
