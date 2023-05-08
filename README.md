@@ -73,7 +73,7 @@ project/input/original/user_location/original_user_location.txt
 --------------------
 | 3. Cleaning codes |
 --------------------
-- A. HOW TO BUILD
+A. HOW TO BUILD
 - Two sets of MR cleaning codes are written to clean the two original datasets. Codes are located in /etl_code in the homework.
 
 (1) The cleaning code in "/etl_code/Nathalia Xu/clean tweets" is for original_tTweets.txt.
